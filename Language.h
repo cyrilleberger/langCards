@@ -18,11 +18,14 @@ public:
   QStringList answers() const { return m_answers; }
   QString correctAnswer() const { return m_correctAnswer; }
 
+  Q_INVOKABLE void userAnswer(const QString& _answer);
 signals:
   void wordChanged();
 public slots:
   void nextWord();
 private:
+  Word* m_currentWord;
+  WordsSerie* m_currentWordsSerie;
   QString m_wordToGuess, m_correctAnswer;
   QStringList m_answers;
   WordsSerie m_basic, m_common, m_rare;

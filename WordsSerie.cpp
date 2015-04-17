@@ -22,10 +22,9 @@ void random_shuffle( RandomIt first, RandomIt last )
     }
 }
 
-void WordsSerie::selectWord(QString& _quest, QString& _answer, QStringList& _answers)
+void WordsSerie::selectWord(Word*& _currentWord, QString& _quest, QString& _answer, QStringList& _answers)
 {
   qreal random_word = qrand() / qreal(RAND_MAX);
-  Word word;
   qreal proba = 0.0;
 
   for(int i = 0; i < m_words.length(); ++i)
@@ -33,32 +32,38 @@ void WordsSerie::selectWord(QString& _quest, QString& _answer, QStringList& _ans
     proba += m_words[i].probability / m_total_probability;
     if(random_word < proba)
     {
-      word = m_words[i];
+      _currentWord = &m_words[i];
       break;
     }
   }
 
   QList<Word> words;
-  words.append(word);
+  words.append(*_currentWord);
   for(int i = 0; i < 3; ++i)
   {
     qreal random_word = qrand() / qreal(RAND_MAX);
-    words.append(m_words[random_word * m_words.length()]);
+    Word newword = m_words[random_word * m_words.length()];
+    if(words.contains(newword))
+    {
+      --i;
+    } else {
+      words.append(newword);
+    }
   }
 
   random_shuffle(words.begin(), words.end());
 
   if(qrand() < RAND_MAX / 2)
   {
-    _quest  = word.word_lang1;
-    _answer = word.word_lang2;
+    _quest  = _currentWord->word_lang1;
+    _answer = _currentWord->word_lang2;
     for(int i = 0; i < 4; ++i)
     {
       _answers.append(words[i].word_lang2);
     }
   } else {
-    _quest  = word.word_lang2;
-    _answer = word.word_lang1;
+    _quest  = _currentWord->word_lang2;
+    _answer = _currentWord->word_lang1;
     for(int i = 0; i < 4; ++i)
     {
       _answers.append(words[i].word_lang1);

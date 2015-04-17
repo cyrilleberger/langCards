@@ -58,6 +58,7 @@ Window {
             {
               parent.color = "red"
             }
+            app_language.userAnswer(modelData)
             nextMouseArea.enabled = true
             root.correctAnswer.color = "green"
           }

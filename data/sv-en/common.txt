@@ -1,3 +1,4 @@
-blomma = flower
-träd = tree
-butik = shop
+blomma   = flower
+träd     = tree
+butik    = shop
+värdshus = inn

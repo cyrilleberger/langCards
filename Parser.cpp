@@ -18,9 +18,10 @@ WordsSerie Parser::words(QIODevice* _device, qreal _probability)
     if(splited.length() == 2)
     {
       Word word;
-      word.word_lang1   = splited[0];
-      word.word_lang2   = splited[1];
+      word.word_lang1   = splited[0].trimmed();
+      word.word_lang2   = splited[1].trimmed();
       word.probability  = _probability;
+      word.probability_base = _probability;
       words.append(word);
       total_probability += _probability;
     }

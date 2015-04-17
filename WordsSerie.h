@@ -11,8 +11,9 @@ class WordsSerie
 public:
   WordsSerie() {}
   WordsSerie(const QList<Word>& _words, qreal m_total_probability);
-  void selectWord(QString& _quest, QString& _answer, QStringList& _answers);
+  void selectWord(Word*& _currentWord, QString& _quest, QString& _answer, QStringList& _answers);
   qreal total_probability() const { return m_total_probability; }
+  void update_total_probability(qreal _p) { m_total_probability += _p; }
 private:
   QList<Word> m_words;
   qreal m_total_probability;
