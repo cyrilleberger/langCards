@@ -1,0 +1,5 @@
+några = some
+många = many
+mindre = less
+mer = more
+mest = most

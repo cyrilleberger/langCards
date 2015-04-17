@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>data/sv-en/rare.txt</file>
+        <file>data/sv-en/basic.txt</file>
+        <file>data/sv-en/common.txt</file>
+    </qresource>
+</RCC>

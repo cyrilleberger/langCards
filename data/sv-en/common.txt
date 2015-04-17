@@ -1,0 +1,3 @@
+blomma = flower
+träd = tree
+butik = shop
