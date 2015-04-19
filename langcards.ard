@@ -17,7 +17,7 @@ class {
   required string lang1word;
   required string lang2word;
   required Tag tag;
-  int success;
+  double success;
 };
 
 database

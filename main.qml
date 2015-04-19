@@ -9,6 +9,7 @@ Window {
 
   property Rectangle correctAnswer
   property int state: 0
+  property date startdate: new Date()
 
   Rectangle {
     anchors.fill: parent
@@ -60,7 +61,7 @@ Window {
             {
               parent.color = "red"
             }
-            app_language.userAnswer(modelData)
+            app_language.userAnswer(modelData, (new Date().getTime() - root.startdate.getTime()))
             root.correctAnswer.color = "green"
             root.state = 2
           }
@@ -86,8 +87,9 @@ Window {
         root.state = 1
         break;
       case 2:
-        app_language.nextWord()
-        root.state = 0
+        app_language.nextWord();
+        root.state = 0;
+        root.startdate  = new Date();
         break;
       }
     }

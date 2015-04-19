@@ -12,7 +12,7 @@
 
 double compute_probability(const LangCardsDB::Word& w)
 {
-  return 1.0 / std::max(1, w.success());
+  return 1.0 / std::max(1.0, w.success());
 }
 
 Language::Language(LangCardsDB::Database* _db, QObject *parent) :
@@ -142,12 +142,16 @@ void Language::nextWord()
   emit(wordChanged());
 }
 
-void Language::userAnswer(const QString& _answer)
+void Language::userAnswer(const QString& _answer, qreal _answerTime)
 {
   double old_proba = compute_probability(*m_currentWord);
   if(_answer == m_correctAnswer)
   {
-    m_currentWord->setSuccess(m_currentWord->success() + 1);
+    qreal a = 2.0;
+    qreal b = 6.0;
+    _answerTime = qMax(a, qMin(_answerTime * 1e-3, b));
+    qreal coef = 1.0 - 0.8 * (_answerTime - a) / (b-a);
+    m_currentWord->setSuccess(m_currentWord->success() + coef);
     m_currentWord->record();
   } else {
     m_currentWord->setSuccess(0);

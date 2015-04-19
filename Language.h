@@ -21,7 +21,7 @@ public:
   QStringList answers() const { return m_answers; }
   QString correctAnswer() const { return m_correctAnswer; }
 
-  Q_INVOKABLE void userAnswer(const QString& _answer);
+  Q_INVOKABLE void userAnswer(const QString& _answer, qreal _time);
 signals:
   void wordChanged();
 public slots:
