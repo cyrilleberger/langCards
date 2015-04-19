@@ -8,6 +8,7 @@ Window {
   height: 600
 
   property Rectangle correctAnswer
+  property int state: 0
 
   Rectangle {
     anchors.fill: parent
@@ -42,6 +43,7 @@ Window {
         height: root.height / 6
         color: "#059"
         radius: height / 3
+        visible: root.state > 0
         Text {
           anchors.centerIn: parent
           text: modelData
@@ -59,8 +61,8 @@ Window {
               parent.color = "red"
             }
             app_language.userAnswer(modelData)
-            nextMouseArea.enabled = true
             root.correctAnswer.color = "green"
+            root.state = 2
           }
         }
         Component.onCompleted: {
@@ -74,13 +76,20 @@ Window {
   }
   MouseArea
   {
-    id: nextMouseArea
     anchors.fill: parent
-    enabled: false
+    enabled: root.state != 1
     onClicked:
     {
-      app_language.nextWord()
-      nextMouseArea.enabled = false
+      switch(root.state)
+      {
+      case 0:
+        root.state = 1
+        break;
+      case 2:
+        app_language.nextWord()
+        root.state = 0
+        break;
+      }
     }
   }
 }
