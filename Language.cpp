@@ -12,7 +12,7 @@
 
 double compute_probability(const LangCardsDB::Word& w)
 {
-  return 1.0 / std::pow(std::max(1.0, w.success()), 3.0);
+  return 1.0 / std::pow(std::max(1.0, std::min(w.lang1success(), w.lang2success())), 3.0);
 }
 
 Language::Language(LangCardsDB::Database* _db, QObject *parent) :
@@ -53,7 +53,8 @@ void random_shuffle( RandomIt first, RandomIt last )
 
 void Language::nextWord()
 {
-  if(LangCardsDB::Word::bySuccess(m_words, 5, Sql::LT).count() < 10)
+  if( (LangCardsDB::Word::byLang1success(m_words, 5, Sql::LT)
+       and LangCardsDB::Word::byLang2success(m_words, 5, Sql::LT)).count() < 10)
   {
     // introduce 5 new words in the pool
     for(int i = 0; i < 5; ++i)
@@ -123,7 +124,10 @@ void Language::nextWord()
   random_shuffle(words.begin(), words.end());
 
   m_answers.clear();
-  if(qrand() < RAND_MAX / 2)
+
+  qreal coef = 1.0 / (1.0 + std::max(1.0, m_currentWord->lang1success()) /std::max(1.0, m_currentWord->lang2success()));
+
+  if(qrand() < coef * RAND_MAX)
   {
     m_wordToGuess   = m_currentWord->lang1word();
     m_correctAnswer = m_currentWord->lang2word();
@@ -152,12 +156,21 @@ void Language::userAnswer(const QString& _answer, qreal _answerTime)
     qreal b = 6.0;
     _answerTime = qMax(a, qMin(_answerTime * 1e-3, b));
     qreal coef = 1.0 - 0.8 * (_answerTime - a) / (b-a);
-    m_currentWord->setSuccess(m_currentWord->success() + coef);
-    m_currentWord->record();
+    if(m_wordToGuess == m_currentWord->lang1word())
+    {
+      m_currentWord->setLang1success(m_currentWord->lang1success() + coef);
+    } else {
+      m_currentWord->setLang2success(m_currentWord->lang2success() + coef);
+    }
   } else {
-    m_currentWord->setSuccess(0);
-    m_currentWord->record();
+    if(m_wordToGuess == m_currentWord->lang1word())
+    {
+      m_currentWord->setLang1success(0);
+    } else {
+      m_currentWord->setLang2success(0);
+    }
   }
+  m_currentWord->record();
   double new_proba = compute_probability(*m_currentWord);
   m_totalProbability += new_proba - old_proba;
 }
@@ -168,7 +181,7 @@ QString Language::databaseDump() const
 
   foreach(const LangCardsDB::Word& w, m_currentWords)
   {
-    dump += w.lang1word() + " / " + w.lang2word() + " = " + QString::number(w.success()) + "\n";
+    dump += w.lang1word() + " / " + w.lang2word() + " = " + QString::number(w.lang1success()) + " / " + QString::number(w.lang2success()) + "\n";
   }
 
   return dump;

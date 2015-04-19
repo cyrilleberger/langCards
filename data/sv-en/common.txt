@@ -23,7 +23,7 @@ v   = att erbjuda   = to offer
 adv = rena          = clean
 adj = trasij        = broken
 v   = att låna      = to borrow
-n   = en kappa      = a oat
+n   = en kappa      = a coat
 v   = att återvända = to return
 adj = trevlig       = nice
 adj = ärlig         = honest
