@@ -4,6 +4,8 @@ QT += qml quick sql
 
 INCLUDEPATH+=.
 
+QMAKE_CXXFLAGS_DEBUG=-O0 -g
+
 SOURCES += main.cpp \
     Language.cpp \
     Parser.cpp \

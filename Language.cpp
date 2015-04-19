@@ -84,7 +84,7 @@ void Language::nextWord()
       int idx = qrand() % list->size();
       fWord new_word = list->at(idx);
       list->removeAt(idx);
-      m_words.createWord(new_word.word_lang1, new_word.word_lang2, LangCardsDB::Tag::byName(m_db, new_word.tag).exec(1).first() );
+      m_currentWords.append(m_words.createWord(new_word.word_lang1, new_word.word_lang2, LangCardsDB::Tag::byName(m_db, new_word.tag).exec(1).first() ));
       m_totalProbability += 1.0;
     }
   }
@@ -95,13 +95,14 @@ void Language::nextWord()
   {
     LangCardsDB::Word* w = &m_currentWords[i];
     current_proba += compute_probability(*w) / m_totalProbability;
+
     if(random_word < current_proba)
     {
       m_currentWord = w;
       break;
     }
   }
-
+  Q_ASSERT(m_currentWord);
   QList<LangCardsDB::Word> words;
   words.append(*m_currentWord);
 
