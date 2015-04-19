@@ -1,5 +1,10 @@
-några = some
-många = many
-mindre = less
-mer = more
-mest = most
+p   = några   = some
+p   = många   = many
+p   = mindre  = less
+p   = mer     = more
+p   = mest    = most
+adj = gott    = good
+p   = som     = as
+adj = nerför  = down
+p   = stället = instead
+adj = rakt    = straight

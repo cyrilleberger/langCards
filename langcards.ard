@@ -1,0 +1,31 @@
+namespace LangCardsDB;
+
+class Tag
+{
+  auto key id;
+  unique required string name;
+  unique required string description;
+};
+
+class {
+  auto key id;
+  required string lang1;
+  required string lang2;
+} of class Word
+{
+  auto key id;
+  required string lang1word;
+  required string lang2word;
+  required Tag tag;
+  int success;
+};
+
+database
+{
+const Tag nounTag(0, "n", "noun");
+const Tag verbTag(1, "v", "verb");
+const Tag adjectiveTag(2, "adj", "adjective");
+const Tag adverbTag(3, "adv", "adverb");
+const Tag pronounTag(4, "p", "pronoun");
+const Tag otherTag(5, "o", "other");
+};

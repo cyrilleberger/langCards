@@ -3,7 +3,10 @@
 
 #include <QObject>
 #include <QStringList>
-#include "WordsSerie.h"
+
+#include "Words.h"
+#include "Word.h"
+#include "fWord.h"
 
 class Language : public QObject
 {
@@ -12,7 +15,7 @@ class Language : public QObject
   Q_PROPERTY(QString correctAnswer READ correctAnswer NOTIFY wordChanged)
   Q_PROPERTY(QStringList answers READ answers NOTIFY wordChanged)
 public:
-  explicit Language(QObject *parent = 0);
+  explicit Language(LangCardsDB::Database* _db, QObject *parent = 0);
 
   QString wordToGuess() const { return m_wordToGuess; }
   QStringList answers() const { return m_answers; }
@@ -24,11 +27,14 @@ signals:
 public slots:
   void nextWord();
 private:
-  Word* m_currentWord;
-  WordsSerie* m_currentWordsSerie;
+  LangCardsDB::Database* m_db;
+  LangCardsDB::Words m_words;
+  QList<LangCardsDB::Word> m_currentWords;
+  LangCardsDB::Word* m_currentWord;
+  qreal m_totalProbability;
   QString m_wordToGuess, m_correctAnswer;
   QStringList m_answers;
-  WordsSerie m_basic, m_common, m_rare;
+  QList<fWord> m_basic, m_common, m_rare;
 };
 
 #endif // LANGUAGE_H

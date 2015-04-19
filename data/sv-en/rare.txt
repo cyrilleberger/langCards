@@ -1,1 +1,5 @@
-constitution = konstitution
+n   = konstitution    = constitution
+adj = taggiga         = pricky
+n   = ett stup        = a precipice
+n   = ett vrak        = a wreck
+adj = olaglig         = illegal

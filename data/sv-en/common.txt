@@ -1,4 +1,15 @@
-blomma   = flower
-träd     = tree
-butik    = shop
-värdshus = inn
+n   = en blomma   = flower
+n   = ett träd    = tree
+n   = en butik    = shop
+n   = ett värdshus = inn
+n   = en nyckel   = key
+n   = en häck     = hedge
+n   = en skog     = forest
+v   = ett ljud    = sound
+v   = att bromsa  = to brake
+v   = att lyckas  = to succeed
+v   = att undvika = to avoid
+n   = en gren     = a branch
+v   = att försvinna   = to disappear
+adj = lugnat      = calm
+n   = en flod     = a river

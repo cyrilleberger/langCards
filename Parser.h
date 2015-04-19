@@ -2,14 +2,19 @@
 #define PARSER_H
 
 #include <QStringList>
-#include "WordsSerie.h"
+
+namespace LangCardsDB {
+  class Words;
+}
+
+class fWord;
 
 class Parser
 {
 public:
   Parser();
-  WordsSerie words(QIODevice* _device, qreal _probability);
-  WordsSerie words(const QString& _file, qreal _probability);
+  QList<fWord> words(QIODevice* _device, LangCardsDB::Words* _words);
+  QList<fWord> words(const QString& _file, LangCardsDB::Words* _words);
 private:
 };
 
