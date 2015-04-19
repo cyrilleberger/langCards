@@ -3,3 +3,7 @@ adj = taggiga         = pricky
 n   = ett stup        = a precipice
 n   = ett vrak        = a wreck
 adj = olaglig         = illegal
+adj = kraftig         = vigorous
+n   = en kavaj      = a blazer
+n   = lufare        = hobo
+v   = att döma      = to judge

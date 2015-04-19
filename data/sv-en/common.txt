@@ -1,11 +1,11 @@
-n   = en blomma   = flower
-n   = ett träd    = tree
-n   = en butik    = shop
-n   = ett värdshus = inn
-n   = en nyckel   = key
-n   = en häck     = hedge
-n   = en skog     = forest
-v   = ett ljud    = sound
+n   = en blomma   = a flower
+n   = ett träd    = a tree
+n   = en butik    = a shop
+n   = ett värdshus = an inn
+n   = en nyckel   = a key
+n   = en häck     = an hedge
+n   = en skog     = a forest
+v   = ett ljud    = a sound
 v   = att bromsa  = to brake
 v   = att lyckas  = to succeed
 v   = att undvika = to avoid
@@ -13,3 +13,22 @@ n   = en gren     = a branch
 v   = att försvinna   = to disappear
 adj = lugnat      = calm
 n   = en flod     = a river
+adv = särskilt      = particularly
+n   = ett fordon    = a vehicle
+n   = en skada      = a damage
+adj = allvarlig     = serious
+n   = en krock      = a collision
+v   = att följa     = to follow
+v   = att erbjuda   = to offer
+adv = rena          = clean
+adj = trasij        = broken
+v   = att låna      = to borrow
+n   = en kappa      = a oat
+v   = att återvända = to return
+adj = trevlig       = nice
+adj = ärlig         = honest
+adj = vacker        = beautiful
+v   = att lita på   = to trust
+v   = att beräkna   = to calculate
+v   = att försvara  = to defend
+v   = att använda   = to use

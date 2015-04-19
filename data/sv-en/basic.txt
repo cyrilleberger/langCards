@@ -4,7 +4,13 @@ p   = mindre  = less
 p   = mer     = more
 p   = mest    = most
 adj = gott    = good
-p   = som     = as
+p   = som     = as (that)
+p   = att       = that
 adj = nerför  = down
 p   = stället = instead
 adj = rakt    = straight
+adj = hela      = whole
+p   = medan     = while
+adv = nyss      = just
+v   = att få    = to get
+v   = att börja = to begin
