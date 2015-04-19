@@ -7,6 +7,50 @@ Item {
   property int state: 0
   property date startdate: new Date()
 
+  Column
+  {
+    visible: root.state == 0
+    y: root.height / 3
+    spacing: root.height / (6*6)
+    Rectangle {
+      x: width * 0.05
+      width: root.width * 0.9
+      height: root.height / 6
+      color: "#070"
+      radius: height / 3
+      Text {
+        anchors.centerIn: parent
+        text: "Answer"
+        font.pixelSize: parent.height * 0.5
+        color: "white"
+      }
+      MouseArea
+      {
+        anchors.fill: parent
+        onClicked: root.state = 1
+      }
+    }
+    Rectangle {
+      x: root.width - 1.05 * width
+      width: root.width * 0.9
+      height: root.height / 6
+      color: "#700"
+      radius: height / 3
+      Text {
+        anchors.centerIn: parent
+        text: "No idea"
+        font.pixelSize: parent.height * 0.5
+        color: "white"
+      }
+      MouseArea
+      {
+        anchors.fill: parent
+        onClicked: root.state = 4
+      }
+    }
+
+  }
+
   Column {
     y: spacing
     spacing: root.height / (6*6)
@@ -15,7 +59,7 @@ Item {
       y: 10
       width: root.width * 0.9
       height: root.height / 6
-      color: "#070"
+      color: "#770"
       radius: height / 3
       Text {
         anchors.centerIn: parent
@@ -35,7 +79,7 @@ Item {
         height: root.height / 6
         color: "#059"
         radius: height / 3
-        visible: root.state > 0
+        visible: root.state > 0 && (root.state < 4 || app_language.correctAnswer == modelData)
         Text {
           anchors.centerIn: parent
           text: modelData
@@ -69,19 +113,20 @@ Item {
   MouseArea
   {
     anchors.fill: parent
-    enabled: root.state != 1
+    enabled: root.state == 2 || root.state == 4
     onClicked:
     {
       switch(root.state)
       {
-      case 0:
-        root.state = 1
-        break;
       case 2:
         app_language.nextWord();
         root.state = 0;
         root.startdate  = new Date();
         break;
+      case 4:
+        app_language.userAnswer("", 0);
+        app_language.nextWord();
+        root.state = 0;
       }
     }
   }
