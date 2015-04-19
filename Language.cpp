@@ -161,3 +161,15 @@ void Language::userAnswer(const QString& _answer, qreal _answerTime)
   double new_proba = compute_probability(*m_currentWord);
   m_totalProbability += new_proba - old_proba;
 }
+
+QString Language::databaseDump() const
+{
+  QString dump;
+
+  foreach(const LangCardsDB::Word& w, m_currentWords)
+  {
+    dump += w.lang1word() + " / " + w.lang2word() + " = " + QString::number(w.success()) + "\n";
+  }
+
+  return dump;
+}

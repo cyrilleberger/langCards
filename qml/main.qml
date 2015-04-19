@@ -23,6 +23,7 @@ Window {
       ListModel {
         id: menuModel
         ListElement { itemText: "Train"; itemState: "train" }
+        ListElement { itemText: "Debug"; itemState: "debug" }
       }
 
       Repeater
@@ -56,6 +57,11 @@ Window {
       anchors.fill: parent
       visible: false
     }
+    Debug {
+      id: debug
+      anchors.fill: parent
+      visible: false
+    }
     states: [
       State {
         name: "menu"
@@ -64,6 +70,10 @@ Window {
       State {
         name: "train"
         PropertyChanges { target: train; visible: true }
+      },
+      State {
+        name: "debug"
+        PropertyChanges { target: debug; visible: true }
       }
 
     ]
