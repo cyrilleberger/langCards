@@ -12,7 +12,7 @@
 
 double compute_probability(const LangCardsDB::Word& w)
 {
-  return 1.0 / std::max(1.0, w.success());
+  return 1.0 / std::pow(std::max(1.0, w.success()), 3.0);
 }
 
 Language::Language(LangCardsDB::Database* _db, QObject *parent) :
