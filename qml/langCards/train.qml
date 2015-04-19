@@ -1,20 +1,12 @@
 import QtQuick 2.3
 import QtQuick.Window 2.2
 
-Window {
+Item {
   id: root
-  visible: true
-  width: 300
-  height: 600
 
   property Rectangle correctAnswer
   property int state: 0
   property date startdate: new Date()
-
-  Rectangle {
-    anchors.fill: parent
-    color: "black"
-  }
 
   Column {
     y: spacing

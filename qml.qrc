@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/langCards/train.qml</file>
+        <file>qml/langCards/qmldir</file>
         <file>data/sv-en/rare.txt</file>
         <file>data/sv-en/basic.txt</file>
         <file>data/sv-en/common.txt</file>
