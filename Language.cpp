@@ -53,7 +53,7 @@ void random_shuffle( RandomIt first, RandomIt last )
 
 void Language::nextWord()
 {
-  if(LangCardsDB::Word::bySuccess(m_words, 10, Sql::LT).count() < 10)
+  if(LangCardsDB::Word::bySuccess(m_words, 5, Sql::LT).count() < 10)
   {
     // introduce 5 new words in the pool
     for(int i = 0; i < 5; ++i)
