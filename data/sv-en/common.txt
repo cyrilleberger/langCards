@@ -32,3 +32,29 @@ v   = att lita på   = to trust
 v   = att beräkna   = to calculate
 v   = att försvara  = to defend
 v   = att använda   = to use
+adv = noga          = carefully
+n   = en sanning    = a truth
+adj = säker         = sure
+v   = att fortsätta = to continue
+adj = tidig         = early
+n   = en skillnad   = a difference
+n   = en invandrare = an immigrant
+n   = ett yrke      = a profession
+adj = fast          = fixed
+v   = att kasta     = to throw
+adv = lugnt         = calmly
+n   = en kulle      = a hill
+n   = en främling   = a stranger
+v   = att vinka     = to wave
+n   = en fälla      = a trap
+v   = att peka (på) = to point (at)
+n   = ett leende    = a smile
+adv = grymt         = cruel
+adj = mörkt         = dark
+adj = fuktig        = damp
+v   = att försöka   = to try
+n   = ett skåp      = a cabinet
+v   = att innehålla = to contain
+adj = farlig        = dangerous
+n   = en brottsling = a criminal
+v   = att ljuga     = to lie

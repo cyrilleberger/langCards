@@ -6,6 +6,7 @@ Item {
   property Rectangle correctAnswer
   property int state: 0
   property date startdate: new Date()
+  property QtObject language
 
   Column
   {
@@ -63,14 +64,14 @@ Item {
       radius: height / 3
       Text {
         anchors.centerIn: parent
-        text: app_language.wordToGuess
+        text: language.wordToGuess
         font.pixelSize: parent.height * 0.5
         color: "white"
       }
     }
     Repeater
     {
-      model: app_language.answers
+      model: language.answers
       delegate: Rectangle {
         id: rect
         x: width * 0.05
@@ -79,7 +80,7 @@ Item {
         height: root.height / 6
         color: "#059"
         radius: height / 3
-        visible: root.state > 0 && (root.state < 4 || app_language.correctAnswer == modelData)
+        visible: root.state > 0 && (root.state < 4 || language.correctAnswer == modelData)
         Text {
           anchors.centerIn: parent
           text: modelData
@@ -92,17 +93,17 @@ Item {
         MouseArea {
           anchors.fill: parent
           onClicked: {
-            if(modelData != app_language.correctAnswer)
+            if(modelData != language.correctAnswer)
             {
               parent.color = "red"
             }
-            app_language.userAnswer(modelData, (new Date().getTime() - root.startdate.getTime()))
+            language.userAnswer(modelData, (new Date().getTime() - root.startdate.getTime()))
             root.correctAnswer.color = "green"
             root.state = 2
           }
         }
         Component.onCompleted: {
-          if(modelData == app_language.correctAnswer)
+          if(modelData == language.correctAnswer)
           {
             root.correctAnswer = rect
           }
@@ -119,13 +120,13 @@ Item {
       switch(root.state)
       {
       case 2:
-        app_language.nextWord();
+        language.nextWord();
         root.state = 0;
         root.startdate  = new Date();
         break;
       case 4:
-        app_language.userAnswer("", 0);
-        app_language.nextWord();
+        language.userAnswer("", 0);
+        language.nextWord();
         root.state = 0;
       }
     }

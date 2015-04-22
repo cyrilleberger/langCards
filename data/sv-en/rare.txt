@@ -7,3 +7,8 @@ adj = kraftig         = vigorous
 n   = en kavaj      = a blazer
 n   = lufare        = hobo
 v   = att döma      = to judge
+v   = att vandra    = to wander
+v   = att rymma     = to escape
+n   = en vakt       = a guard
+n   = en åklagare   = a prosecutor
+n   = ett utseende  = an appearance

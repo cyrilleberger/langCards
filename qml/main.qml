@@ -23,6 +23,7 @@ Window {
       ListModel {
         id: menuModel
         ListElement { itemText: "Train"; itemState: "train" }
+        ListElement { itemText: "Examination"; itemState: "examination" }
         ListElement { itemText: "Debug"; itemState: "debug" }
       }
 
@@ -56,6 +57,13 @@ Window {
       id: train
       anchors.fill: parent
       visible: false
+      language: app_language
+    }
+    Train {
+      id: examination
+      anchors.fill: parent
+      visible: false
+      language: app_examination
     }
     Debug {
       id: debug
@@ -70,6 +78,10 @@ Window {
       State {
         name: "train"
         PropertyChanges { target: train; visible: true }
+      },
+      State {
+        name: "examination"
+        PropertyChanges { target: examination; visible: true }
       },
       State {
         name: "debug"

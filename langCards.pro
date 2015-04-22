@@ -11,7 +11,9 @@ SOURCES += main.cpp \
     Parser.cpp \
     Tag.cpp \
     Word.cpp \
-    Words.cpp
+    Words.cpp \
+    Examination.cpp \
+    LanguageBase.cpp
 
 RESOURCES += qml.qrc
 
@@ -29,7 +31,9 @@ HEADERS += \
     Words.h \
     Tag.h \
     TypesDefinitions.h \
-    fWord.h
+    fWord.h \
+    Examination.h \
+    LanguageBase.h
 
 OTHER_FILES += \
     langcards.ard

@@ -14,3 +14,10 @@ p   = medan     = while
 adv = nyss      = just
 v   = att få    = to get
 v   = att börja = to begin
+adv = kanske    = maybe / perhaps
+adj = sådan     = such
+adj = vanlig    = usual
+adj = sämre     = worse
+adj = endast    = only
+adv = även      = even
+adv = innan     = before
