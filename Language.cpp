@@ -23,11 +23,10 @@ Language::Language(LangCardsDB::Database* _db, QObject *parent) :
 
 void Language::reload()
 {
+  m_total_available_probability = 0.0;
 
   Parser parser;
-  m_basic   = parser.words(":/data/sv-en/basic.txt", &m_words);
-  m_common  = parser.words(":/data/sv-en/common.txt", &m_words);
-  m_rare    = parser.words(":/data/sv-en/rare.txt", &m_words);
+  m_available_words   = parser.words(":/data/sv-en.txt", &m_words, m_total_available_probability);
 
   m_currentWords = LangCardsDB::Word::all(m_words).exec();
   m_totalProbability    = 0.0;
@@ -47,34 +46,22 @@ void Language::nextWord()
     // introduce 5 new words in the pool
     for(int i = 0; i < 5; ++i)
     {
-      qreal total_probability   = m_basic.length() * 1.0  + m_common.length() * 0.1 + m_rare.length() * 0.01;
-      qreal basic_probability   = m_basic.length() * 1.0 / total_probability;
-      qreal common_probability  = m_common.length() * 0.1 / total_probability;
-
       qreal random_word = qrand() / qreal(RAND_MAX);
 
-      QList<fWord>* list = 0;
-
-      if(random_word < basic_probability)
+      qreal current_proba = 0.0;
+      for(int i = 0; i < m_available_words.count(); ++i)
       {
-        list = &m_basic;
+        const fWord& w = m_available_words.at(i);
+        current_proba += w.proba / m_total_available_probability;
+        if(random_word < current_proba)
+        {
+          m_total_available_probability -= w.proba;
+          m_currentWords.append(m_words.createWord(w.word_lang1, w.word_lang2, LangCardsDB::Tag::byName(m_db, w.tag).exec(1).first()));
+          m_totalProbability += 1.0;
+          m_available_words.removeAt(i);
+          break;
+        }
       }
-      else if(random_word < basic_probability + common_probability)
-      {
-        list = &m_common;
-      } else {
-        list = &m_rare;
-      }
-      if(list->isEmpty())
-      {
-        qDebug() << "You know everything! You are the anti-jon Snow!";
-        break;
-      }
-      int idx = qrand() % list->size();
-      fWord new_word = list->at(idx);
-      list->removeAt(idx);
-      m_currentWords.append(m_words.createWord(new_word.word_lang1, new_word.word_lang2, LangCardsDB::Tag::byName(m_db, new_word.tag).exec(1).first() ));
-      m_totalProbability += 1.0;
     }
   }
 
@@ -84,7 +71,6 @@ void Language::nextWord()
   {
     LangCardsDB::Word* w = &m_currentWords[i];
     current_proba += compute_probability(*w) / m_totalProbability;
-
     if(random_word < current_proba)
     {
       m_currentWord = w;

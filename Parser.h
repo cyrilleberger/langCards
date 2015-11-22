@@ -3,7 +3,10 @@
 
 #include <QStringList>
 
-namespace LangCardsDB {
+class QIODevice;
+
+namespace LangCardsDB
+{
   class Words;
 }
 
@@ -13,8 +16,8 @@ class Parser
 {
 public:
   Parser();
-  QList<fWord> words(QIODevice* _device, LangCardsDB::Words* _words);
-  QList<fWord> words(const QString& _file, LangCardsDB::Words* _words);
+  QList<fWord> words(QIODevice* _device, LangCardsDB::Words* _words, qreal& _total_proba);
+  QList<fWord> words(const QString& _file, LangCardsDB::Words* _words, qreal& _total_proba);
 private:
 };
 

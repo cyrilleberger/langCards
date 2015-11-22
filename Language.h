@@ -19,8 +19,8 @@ public:
   Q_INVOKABLE void reload();
   Q_INVOKABLE void nextWord();
 private:
-  QList<fWord> m_basic, m_common, m_rare;
-  qreal m_totalProbability;
+  QList<fWord> m_available_words;
+  qreal m_totalProbability, m_total_available_probability;
 };
 
 #endif // LANGUAGE_H

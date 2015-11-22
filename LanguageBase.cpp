@@ -5,7 +5,7 @@
 #include "Word.h"
 
 LanguageBase::LanguageBase(LangCardsDB::Database* _db, QObject *parent) :
-  QObject(parent), m_db(_db)
+  QObject(parent), m_db(_db), m_currentWord(0)
 {
   if((LangCardsDB::Words::byLang1(m_db, "sv") && (LangCardsDB::Words::byLang2(m_db, "en"))).count() == 0)
   {

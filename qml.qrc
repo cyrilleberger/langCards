@@ -4,8 +4,6 @@
         <file>qml/langCards/train.qml</file>
         <file>qml/langCards/debug.qml</file>
         <file>qml/langCards/qmldir</file>
-        <file>data/sv-en/rare.txt</file>
-        <file>data/sv-en/basic.txt</file>
-        <file>data/sv-en/common.txt</file>
+        <file>data/sv-en.txt</file>
     </qresource>
 </RCC>

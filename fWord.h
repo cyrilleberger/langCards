@@ -6,6 +6,7 @@
 struct fWord
 {
   QString tag, word_lang1, word_lang2;
+  qreal proba;
 };
 
 #endif // WORD_H
